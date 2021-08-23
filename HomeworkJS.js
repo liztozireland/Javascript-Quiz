@@ -3,6 +3,7 @@ var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
+var timeEl = document.querySelector(".time");
 
 var chosenWord = "";
 var numBlanks = 0;
@@ -14,29 +15,25 @@ var timerCount;
 
 var questions = ["who was the green river killer?" , "who was the co-ed killer?" , "Where was Ted Bundy executed?"]
 
-function startTimer(duration, display) {
-    var timer = duration, minutes, seconds;
-    setInterval(function () {
-        minutes = parseInt(timer / 60, 10)
-        seconds = parseInt(timer % 60, 10);
+var secondsLeft = 10;
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-
-        display.textContent = minutes + ":" + seconds;
-
-        if (--timer < -1) {
-            timer = -1;
-        return "Time out!! :("
-            // timer = duration; // uncomment this line to reset timer automatically after reaching 0
-        }
+function setTime() {
+    // Sets interval in variable
+    var timerInterval = setInterval(function() {
+      secondsLeft--;
+      timeEl.textContent = secondsLeft + " second left in game!";
+  
+      if(secondsLeft === 0) {
+        clearInterval(timerInterval);
+        sendMessage();
+      }
+  
     }, 1000);
-}
-
-
-window.onload = function () {
-    var time = 60 / 2, 
-        display = document.querySelector('#GameTimer');
-    startTimer(time, display);
-    
-};
+  }
+  
+  function sendMessage() {
+    timeEl.textContent = "You Lose";
+  
+  }
+  
+  setTime();
