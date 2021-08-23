@@ -1,15 +1,23 @@
 body {
     font-size: 30px;
     font-family: "Roboto", sans-serif;
-    background-color: #eff5f8;
+    /* background-color: #eff5f8; */
     color: #001b44;
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
   }
   
   header {
     width:100%;
-    display: flex;
     background-color: yellow;
+    text-align: center;
+    padding: 10px;
   }
+
+  main {
+    display: inline-flex;
+    
+    }
 
   .win-loss-container {
     font-size: 15px;
@@ -22,4 +30,16 @@ body {
     height: 30px;
     line-height: 8px;
     margin-top: 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
   }
+
+  section {
+    font-size: 15px;
+    display: flex;
+    justify-content: flex-start;
+    margin: 16px;
+    border: 5px solid #001b44;
+    padding: 15px;
+    flex-basis: 30rem;
+    }
