@@ -17,7 +17,7 @@ var questions = ["who was the green river killer?" , "who was the co-ed killer?"
 
 var secondsLeft = 10;
 
-function setTime() {
+startButton.onclick = function setTime() {
     // Sets interval in variable
     var timerInterval = setInterval(function() {
       secondsLeft--;
@@ -32,8 +32,7 @@ function setTime() {
   }
   
   function sendMessage() {
-    timeEl.textContent = "You Lose";
-  
+    timeEl.textContent = "Time's out! 😢";
   }
   
   setTime();

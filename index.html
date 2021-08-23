@@ -10,21 +10,20 @@
     <header>
       <h1>Word Guess Game</h1>
       <p>Think you have what it takes?</p>
-      <button class="reset-button">Start Game</button>
+      <button class="start-button">Start Game</button>
     </header>
     <main>
-      <section>
-      <div class = section1>
+      <question-container>
+      <div class = question-container>
           <p>Word game goes here</p>
           <div class="question"></div>
           <ul class="choiceList"></ul>
-          <p>add a button</p>
-          <button class="reset-button">Begin!</button>
+          <button class="reset-button">Next Question</button>
       </div>
-      </section>
+      </question-container>
   
-      <section>
-          <div class = section2>
+      <win-loss-container>
+          <div class = win-loss-container>
 
               <p>add a scorecard</p>
               <div id="GameTimer">
@@ -33,7 +32,7 @@
 
               <button class="reset-button">Reset Score</button>
           </div>
-          </section>
+          </win-loss-container>
     </main>
     <script src="HomeworkJS.js"></script>
   </body>
