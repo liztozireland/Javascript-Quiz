@@ -5,7 +5,11 @@ body {
     color: #001b44;
   }
   
-
+  header {
+    width:100%;
+    display: flex;
+    background-color: yellow;
+  }
 
   .win-loss-container {
     font-size: 15px;
