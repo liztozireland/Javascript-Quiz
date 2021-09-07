@@ -1,4 +1,5 @@
 // var wordBlank = document.querySelector(".word-blanks");
+var wordBlank = document.querySelector(".word-blanks");
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
@@ -14,6 +15,35 @@ var timer;
 var timerCount;
 
 var questions = ["who was the green river killer?" , "who was the co-ed killer?" , "Where was Ted Bundy executed?"]
+var answers = ["Gary Ridgeway","Edmund Kemper", "Florida"];
+
+function init() {
+  getWins();
+  getlosses();
+}
+
+function startGame() {
+  isWin = false;
+  timerCount = 10;
+  startButton.disabled = true;
+  renderBlanks()
+  startTimer()
+}
+
+function winGame() {
+  wordBlank.textContent = "YOU WON!!!🏆 ";
+  winCounter++
+  startButton.disabled = false;
+  setWins()
+}
+
+// The loseGame function is called when timer reaches 0
+function loseGame() {
+  wordBlank.textContent = "GAME OVER";
+  loseCounter++
+  startButton.disabled = false;
+  setLosses()
+}
 
 var secondsLeft = 10;
 
