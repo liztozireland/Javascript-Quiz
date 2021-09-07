@@ -1,5 +1,4 @@
-// var wordBlank = document.querySelector(".word-blanks");
-var wordBlank = document.querySelector(".word-blanks");
+var wordQuestion = document.querySelector(".quiz-question");
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
@@ -26,7 +25,7 @@ function startGame() {
   isWin = false;
   timerCount = 10;
   startButton.disabled = true;
-  renderBlanks()
+  renderQuestions()
   startTimer()
 }
 
@@ -48,21 +47,19 @@ function loseGame() {
 var secondsLeft = 10;
 
 startButton.onclick = function setTime() {
-    // Sets interval in variable
     var timerInterval = setInterval(function() {
       secondsLeft--;
-      timeEl.textContent = secondsLeft + " second left in game!";
+      timeEl.textContent = secondsLeft + " seconds left in game!";
   
       if(secondsLeft === 0) {
         clearInterval(timerInterval);
-        sendMessage();
+        sendMessage("");
       }
   
     }, 1000);
   }
+    // function sendMessage() {
+    // timeEl.textContent = "Time's out! 😢";
   
-  function sendMessage() {
-    timeEl.textContent = "Time's out! 😢";
-  }
   
   setTime();
