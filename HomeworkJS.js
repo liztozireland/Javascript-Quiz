@@ -1,4 +1,4 @@
-var wordQuestion = document.querySelector(".quiz-question");
+var wordQuestion = document.getElementById(".quiz-question");
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
@@ -53,13 +53,11 @@ startButton.onclick = function setTime() {
   
       if(secondsLeft === 0) {
         clearInterval(timerInterval);
-        sendMessage("");
+        timeEl.textContent = "Time's out! 😢";
+
       }
   
     }, 1000);
   }
-    // function sendMessage() {
-    // timeEl.textContent = "Time's out! 😢";
-  
   
   setTime();
