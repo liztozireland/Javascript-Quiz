@@ -1,4 +1,4 @@
-var myQuestins = document.querySelector(".word-blanks");
+var myQuestions = document.querySelector(".my-questions");
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var timeEl = document.querySelector(".timer-count");
@@ -6,7 +6,16 @@ var startButton = document.querySelector(".start-button");
 var resetButton = document.querySelector(".reset-button");
 //starting over
 
-var questions = ["variable","array", "modulus", "object", "function", "string", "boolean"];
+// var questionArray = ["how are you?" , "question 2", "question 3"]
+
+// var question1Array = ["answer 1", "answer 1", "answer 3"]
+
+// var question2Array = ["answers 1", "answerd 1", "answerl 3"]
+
+// var answerArray = ["answer 1", "answerd 1", "answer 3"]
+
+// var i = 0
+// while (i<5) { i++}
 
 function init() {
   getWins();
@@ -18,16 +27,55 @@ function startGame() {
   timerCount = 10;
   // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
-  showQuestions()
+  // showQuestions()
   startTimer()
 }
 
 
-function showQuestions() {
+// function showQuestions() {
+//   var currentQuestion = questionArray [""]
+//   //add current question to question El
+//   questionEl.textContent = currentQuestion
+//   var currentChoices; 
+//   if (index===0) {
+// currentChoices = question1Array
+//   } else if (index===1){
+//       currentChoices = question2Array
+//   } 
+//   choice1El.textContent = currentChoices[0]
+//   choice1El.onclick = checkAnswer
+//   choice2El.textContent = currentChoices[1]
+//   choice2El.onclick = checkAnswer
+//   for (i=0; i<currentChoices.length; i++) {
+//       var choice = currentChoices [i]
+      
+//   }  
+// index++
+// }
+// function checkAnswer(event){
+//   var choice = event.target.textContent
+//   if (choice!==answerArray[index]) {
+//       time=time-10
+//   }
+//   showquestions();
+// }
 
-}
 function startTimer() {
-  
+  timer = setInterval(function() {
+    timerCount--;
+    timeEl.textContent = timerCount;
+    if (timerCount >= 0) {
+      if (isWin && timerCount > 0) {
+        clearInterval(timer);
+        winGame();
+      }
+    }
+    if (timerCount === 0) {
+      // Clears interval
+      clearInterval(timer);
+      loseGame();
+    }
+  }, 1000);
 }
 
 startButton.addEventListener("click", startGame);
