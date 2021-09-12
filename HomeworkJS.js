@@ -4,18 +4,14 @@ var lose = document.querySelector(".lose");
 var timeEl = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
 var resetButton = document.querySelector(".reset-button");
-//starting over
 
-// var questionArray = ["how are you?" , "question 2", "question 3"]
+var questionArray = ["how are you?" , "question 2", "question 3"]
+var question1Array = ["answer 1", "answer 1", "answer 3"]
+var question2Array = ["answers 1", "answerd 1", "answerl 3"]
+var answerArray = ["answer 1", "answerd 1", "answer 3"]
 
-// var question1Array = ["answer 1", "answer 1", "answer 3"]
-
-// var question2Array = ["answers 1", "answerd 1", "answerl 3"]
-
-// var answerArray = ["answer 1", "answerd 1", "answer 3"]
-
-// var i = 0
-// while (i<5) { i++}
+var i = 0
+while (i<5) { i++}
 
 function init() {
   getWins();
@@ -25,40 +21,17 @@ function init() {
 function startGame() {
   isWin = false;
   timerCount = 10;
-  // Prevents start button from being clicked when round is in progress
   startButton.disabled = true;
   // showQuestions()
   startTimer()
 }
 
-
-// function showQuestions() {
-//   var currentQuestion = questionArray [""]
-//   //add current question to question El
-//   questionEl.textContent = currentQuestion
-//   var currentChoices; 
-//   if (index===0) {
-// currentChoices = question1Array
-//   } else if (index===1){
-//       currentChoices = question2Array
-//   } 
-//   choice1El.textContent = currentChoices[0]
-//   choice1El.onclick = checkAnswer
-//   choice2El.textContent = currentChoices[1]
-//   choice2El.onclick = checkAnswer
-//   for (i=0; i<currentChoices.length; i++) {
-//       var choice = currentChoices [i]
-      
-//   }  
-// index++
-// }
-// function checkAnswer(event){
-//   var choice = event.target.textContent
-//   if (choice!==answerArray[index]) {
-//       time=time-10
-//   }
-//   showquestions();
-// }
+function loseGame() {
+  myQuestions.textContent = "GAME OVER";
+  loseCounter++
+  startButton.disabled = false;
+  setLosses()
+}
 
 function startTimer() {
   timer = setInterval(function() {
@@ -77,5 +50,34 @@ function startTimer() {
     }
   }, 1000);
 }
+
+function showQuestions() {
+  currentQuestion = questionArray [index]
+  questionEl.textContent = currentQuestion
+  var currentChoices; 
+  if (index===0) {
+currentChoices = question1Array
+  } else if (index===1){
+      currentChoices = question2Array
+  } 
+  choice1El.textContent = currentChoices[0]
+  choice1El.onclick = checkAnswer
+  choice2El.textContent = currentChoices[1]
+  choice2El.onclick = checkAnswer
+  for (i=0; i<currentChoices.length; i++) {
+      var choice = currentChoices [i]
+      
+  }  
+index++
+}
+function checkAnswer(event){
+  var choice = event.target.textContent
+  if (choice!==answerArray[index]) {
+      time=time-10
+  }
+  showquestions();
+}
+
+
 
 startButton.addEventListener("click", startGame);
