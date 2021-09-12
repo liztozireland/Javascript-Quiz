@@ -1,9 +1,14 @@
-var quizQuestions = document.getElementById(".quiz-question");
+var quizQuestions = document.querySelector(".quizQuestions");
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
-var timerElement = document.querySelector(".timer-count");
+var timeEl = document.querySelector(".timer-count");
 var startButton = document.querySelector(".start-button");
-var timeEl = document.querySelector(".time");
+
+var quizQuestions = "";
+var winCounter = 0;
+var loseCounter = 0;
+var isWin = false;
+var timer;
 var timerCount;
 
 
@@ -17,9 +22,9 @@ function init() {
 
 startButton.onclick = function startGame() {
   isWin = false;
-  timerCount = 10;
+  timerCount = 5;
   startButton.disabled = true;
-  // renderQuestions()
+  renderQuestions()
   startTimer()
 }
 
@@ -60,25 +65,21 @@ function winGame() {
 //   setLosses()
 // }
 
-
-// startButton.addEventListener("click", quizQuestions);
-
-// startButton.onclick = function showQuestion() {
-//   var quizQuestions = quizQuestions.textContent = "something"
-// }
-
-// startButton.onclick = function setTime() {
-//     var timerInterval = setInterval(function() {
-//       secondsLeft--;
-//       timeEl.textContent = secondsLeft + " seconds left in game!";
-  
-//       if(secondsLeft === 0) {
-//         clearInterval(timerInterval);
-//         timeEl.textContent = "Time's out! 😢";
-
-//       }
-//     }, 1000);
-//   }
   
   // setTime();
+
+
+  function renderQuestions() {
+    // Randomly picks word from words array
+    chosenWord = words[Math.floor(Math.random() * words.length)];
+    lettersInChosenWord = chosenWord.split("");
+    numBlanks = lettersInChosenWord.length;
+    blanksLetters = []
+    // Uses loop to push blanks to blankLetters array
+    for (var i = 0; i < numBlanks; i++) {
+      blanksLetters.push("_");
+    }
+    // Converts blankLetters array into a string and renders it on the screen
+    wordBlank.textContent = blanksLetters.join(" ")
+  }
 
