@@ -8,7 +8,7 @@ body {
 
   }
   
-  header {
+  .jumbotron {
     width:100%;
     background: rgb(151,238,200);
     background: linear-gradient(0deg, rgba(151,238,200,1) 0%, rgba(255,255,255,1) 100%);
@@ -33,6 +33,7 @@ body {
         margin-top: 20px;
         border-radius: 15px;
         margin-bottom: 15px;
+        background: orange;
       }
 
   .win-loss-container {
