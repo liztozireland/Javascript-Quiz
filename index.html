@@ -1,27 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="homeowrkCSS.css" />
-  <title>Happy Little Quiz Questions</title>
-</head>
-<body>
-  <div class="jumbotron">
-    <h1 class="display-4">Can You Smell What the Rock is Cooking?</h1>
-   
-    <hr class="my-4">
-    <a class="start-button" href="#" role="button">Happy Trees</a>
-    <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
-  </div></div>
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
+<html>
+  <head>
+    <title>CSS Box Styling</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="homeowrkCSS.css" />
+  </head>
+  <body>
+    <header>
+      <div class= "large-font">Word Guess Game</div>
+      <button class="start-button">Start</button>
+    </header>
 
+    <main>
       <section>
-        <div class="question-container">Away we go!</div>
-          <div class="question-deck"></div>
+        <div class="card word-guess">
+          <div class="large-font word-blanks">J _ v _ S c r_ _t</div>
         </div>
       </section>
 
@@ -36,10 +30,14 @@
       </div>
           <div class= "card timer">
             <div class = "timer-text">
-              <div class="timer-count">__</div>
-              <h3>seconds left</h3>
+            <div class="large-font timer-count">10</div>
+            <h3>seconds remaining</h3>
           </div>
-
-</body>
-<script src="HomeworkJS.js"></script>
+        
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="HomeworkJS.js"></script>
+  </body>
 </html>
