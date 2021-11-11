@@ -27,7 +27,6 @@ startButton.addEventListener("click", startGame)
 nextButton.addEventListener("click", () => {
   currentQuestionIndex++
   setNextQuestion()
-  startGame()
 })
 
 function startGame () {
@@ -165,13 +164,13 @@ function winGame() {
 }
 
 // The loseGame function is called when timer reaches 0
-function loseGame() {
-  wordBlank.textContent = "GAME OVER";
-  loseCounter++
-  startButton.disabled = false;
-  setLosses()
-  clearInterval(timer);
-}
+// function loseGame() {
+//   wordBlank.textContent = "GAME OVER";
+//   loseCounter++
+//   startButton.disabled = false;
+//   setLosses()
+//   clearInterval(timer);
+// }
 
 function startTimer() {
   // Sets timer
