@@ -1,61 +1,57 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>CSS Box Styling</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" href="homeowrkCSS.css" />
-  </head>
-  <body>
-  <div class="container">
-    <div id="question-container" class="hide">
-      <div id="question">Question</div>
-      <div id="answer-buttons" class="btn-grid">
-        <button class="btn">Answer 1</button>
-        <button class="btn">Answer 2</button>
-        <button class="btn">Answer 3</button>
-        <button class="btn">Answer 4</button>
-      </div>
-    </div>
-    <div class="controls">
-    <button id="start-btn" class="start-btn btn">Start</button>
-    <button id="next-btn" class="next-btn btn hide">Next</button>
-  </div>
-  </div>
 
+<head>
+  <title>Super Fun Javascript Quiz</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="homeowrkCSS.css" />
+</head>
 
-
-    <!-- <header>
-      <div class= "large-font">Word Guess Game</div>
-      <button class="start-button">Start</button>
+<body>
+  <header>
+      <h1 class="header">It's a Javascript Quiz!</h1>
+      <h2>High Score:</h2>
+      <h3 class="high-score"></h3>
     </header>
-
-    <main>
-      <section>
-        <div class="card word-guess">
-          <div class="large-font word-blanks">J _ v _ S c r_ _t</div>
+  <main>
+    <section>
+      <div class="container">
+        <div id="question-container" class="hide">
+          <div id="question">Question</div>
+          <div id="answer-buttons" class="btn-grid">
+            <button class="btn">Answer 1</button>
+            <button class="btn">Answer 2</button>
+            <button class="btn">Answer 3</button>
+            <button class="btn">Answer 4</button>
+          </div>
         </div>
-      </section>
-
-      <section>
-        <div class="card results">
-          <div class = "win-loss-container">
-          <div>
-          <h2>Wins: <span class="win">0 </span> </h2>
-          <h2>Losses: <span class="lose">0</span></h2>
+        <div class="controls">
+          <button id="start-btn" class="start-btn btn">Start</button>
+          <button id="next-btn" class="next-btn btn hide">Next</button>
         </div>
-          <button class="reset-button">Reset Score</button>
       </div>
-          <div class= "card timer">
-            <div class = "timer-text">
-            <div class="large-font timer-count">10</div>
-            <h3>seconds remaining</h3>
+    </section>
+    <section>
+      <div class="scorecard-conainer">
+        <div id="wordBlank"></div>
+        <div id="wrongAnswer"></div>
+        <div class="win-loss-container">
+          <div>
+            <h2>Wins: <span class="win">0 </span> </h2>
+            <h2>Losses: <span class="lose">0</span></h2>
           </div>
-        
+
+          <div class="card timer">
+            <div class="timer-text">
+              <div class="large-font timer-count">10</div>
+              <h3>seconds remaining</h3>
+            </div>
           </div>
         </div>
-      </section>
-    </main> -->
-    <script src="HomeworkJS.js"></script>
-  </body>
+    </section>
+  </main>
+  <script src="HomeworkJS.js"></script>
+</body>
+
 </html>
