@@ -6,7 +6,7 @@ const answerButtonElement = document.getElementById("answer-buttons")
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
-var wordBlank = document.getElementById("wordBlank");
+var winLoseMessage = document.getElementById("winLoseMessage");
 var wrongAnswer = document.getElementById("wrongAnswer");
 var highScore = document.querySelector(".high-score")
 var winCounter = 0;
@@ -21,6 +21,24 @@ let shuffledQuestions, currentQuestionIndex
 function init() {
   getWins();
   getlosses();
+}
+
+function isWin() {
+  winLoseMessage.textContent = "YOU WON!!!🏆 ";
+  winCounter++
+  startButton.disabled = false;
+  setWins()
+  clearInterval(timer);
+  displayInput()
+}
+
+// The loseGame function is called when timer reaches 0
+function loseGame() {
+  winLoseMessage.textContent = "GAME OVER";
+  loseCounter++
+  startButton.disabled = false;
+  setLosses()
+  clearInterval(timer)
 }
 
 startButton.addEventListener("click", startGame)
@@ -92,6 +110,15 @@ function setStatusClass (element, correct){
   }
 }
 
+// function correctAnswer (correct, wrong) {
+//   if (correct) {
+//     element.classList.add("correct")
+//   } else {
+//     element.classList.add("wrong")
+//   }
+// }
+
+
 function clearStatusClass (element) {
   element.classList.remove("correct")
   element.classList.remove("wrong")
@@ -154,23 +181,15 @@ const questions = [
   }
 ]
 
-function winGame() {
-  wordBlank.textContent = "YOU WON!!!🏆 ";
-  winCounter++
-  startButton.disabled = false;
-  setWins()
-  clearInterval(timer);
-  displayInput()
+function setWins() {
+  win.textContent = winCounter;
+  localStorage.setItem("winCount", winCounter);
 }
 
-// The loseGame function is called when timer reaches 0
-// function loseGame() {
-//   wordBlank.textContent = "GAME OVER";
-//   loseCounter++
-//   startButton.disabled = false;
-//   setLosses()
-//   clearInterval(timer);
-// }
+function setLosses() {
+  lose.textContent = loseCounter;
+  localStorage.setItem("loseCount", loseCounter);
+}
 
 function startTimer() {
   // Sets timer
@@ -192,9 +211,23 @@ function startTimer() {
       timerCount = 0
       timerElement.textContent = timerCount;
       clearInterval(timer);
-      loseGame();
+      endGame();
     }
   }, 1000);
+}
+
+function endGame () {
+  if (timerCount <= 0) {
+    // Clears interval
+    timerCount = 0
+    timerElement.textContent = timerCount;
+    clearInterval(timer);
+//     questionElement.setAttribute("class", "hide");
+// questionContainerEl.classList.add("hide")
+startButton.innerText = "Restart"
+startButton.classList.remove("hide")
+    
+  }
 }
 
 function getHighScore () {
@@ -215,31 +248,15 @@ function saveHighScore (){
 
 getHighScore()
 
-// These functions are used by init
-function getWins() {
-  // Get stored value from client storage, if it exists
-  var storedWins = localStorage.getItem("winCount");
-  // If stored value doesn't exist, set counter to 0
-  if (storedWins === null) {
-    winCounter = 0;
-  } else {
-    // If a value is retrieved from client storage set the winCounter to that value
-    winCounter = storedWins;
-  }
-  //Render win count to page
-  win.textContent = winCounter;
-}
 
-function getlosses() {
-  var storedLosses = localStorage.getItem("loseCount");
-  if (storedLosses === null) {
-    loseCounter = 0;
-  } else {
-    loseCounter = storedLosses;
-  }
-  lose.textContent = loseCounter;
+function resetGame() {
+  // Resets win and loss counts
+  winCounter = 0;
+  loseCounter = 0;
+  // Renders win and loss counts and sets them into client storage
+  setWins()
+  setLosses()
 }
-init()
 
 function saveHighScore () {
   //take time and value property from input and make a string 
