@@ -44,112 +44,51 @@ startTimer()
 function showQuestion () {
   var currentQuestion = questions[currentQuestionIndex];
   document.getElementById("question").innerHTML = currentQuestion.title;
-  // currentQuestion = questions.title;
-  
-  // questions[currentQuestionIndex].question;
+  answerButtonElement.innerHTML = "";
   currentQuestion.choices.forEach(function(choice, i) {
-    var choicesEl = document.createElement("button");;
-    document.getElementById("answer-buttons").innerHTML = currentQuestion.choices;
+    var choicesEl = document.createElement("button");
+    choicesEl.setAttribute("class", "choice");
+    choicesEl.setAttribute("value", choicesEl);
 
-    choicesEl.textContent = i + ". " + choice;
-    choicesEl.onclick = questionClick;
-
-    console.log("questionIII")  
+    choicesEl.textContent = i + 1 + ". " + choice;
+    choicesEl.onclick = questionClick; 
+    answerButtonElement.appendChild(choicesEl);
 
   });
 
 
   function questionClick() {
     // check if user guessed wrong
-    if (this.value !== questions[currentQuestionIndex].answer) {
+    if (this.value !== currentQuestion.answer) {
+      console.log("wrong")
       // penalize time
-      time -= 15;
+    //   timerCount -= 15;
   
-      if (time < 0) {
-        time = 0;
-      }
+    //   if (time < 0) {
+    //     time = 0;
+    //   }
   
-      // display new time on page
-      timerEl.textContent = time;
+    //   // display new time on page
+    //   timerEl.textContent = time;
   
 
   
-      feedbackEl.textContent = "Wrong!";
-    } else {
+    //   winLoseMessage.textContent = "Wrong!";
+    // } else {
   
-      feedbackEl.textContent = "Correct!";
+    //   winLoseMessage.textContent = "Correct!";
     }
   
     // flash right/wrong feedback on page for half a second
-    feedbackEl.setAttribute("class", "feedback");
-    setTimeout(function() {
-      feedbackEl.setAttribute("class", "feedback hide");
-    }, 1000);
+    // winLoseMessage.setAttribute("class", "feedback");
+    // setTimeout(function() {
+    //   winLoseMessage.setAttribute("class", "feedback hide");
+    // }, 1000);
   
     // move to next question
     currentQuestionIndex++;
-  
-    // check if we've run out of questions
-    if (currentQuestionIndex === questions.length) {
-      quizEnd();
-    } else {
-      getQuestion();
-    }
   }
-
-
-//   questionElement.innerText = question.question
-// question.answers.forEach(answer => {
-//   const button = document.createElement("btn")
-//   button.innerText = answer.text
-//   button.classList.add("btn")
-//   if (answer.correct) {
-//     button.dataset.correct = answer.correct
-//   }
-//   button.addEventListener("click", selectAnswer)
-//   answerButtonElement.appendChild(button)
-// })
 }
-
-// function resetState () {
-//   nextButton.classList.add("hide")
-//   while (answerButtonElement.firstChild) {
-//     answerButtonElement.removeChild(answerButtonElement.firstChild)
-//   }
-// }
-
-// function selectAnswer (e) {
-//   const selectedButton = e.target
-//   const correct = selectedButton.dataset.correct
-//   const wrong = selectedButton.dataset.wrong
-//   setStatusClass(document.body, correct, wrong)
-//   Array.from(answerButtonElement.children).forEach(button => {
-//     setStatusClass(button, button.dataset.correct)
-//   })
-//   if (shuffledQuestions.length > currentQuestionIndex + 1){
-//     nextButton.classList.remove("hide")
-//   } else {
-//     isWin = true
-//       startButton.innerText = "Restart"
-//       startButton.classList.remove("hide")
-//   }
-// }
-
-
-// function setStatusClass (element, correct, wrong){
-//   clearStatusClass(element)
-//   if (correct) {
-//     element.classList.add("correct")
-//   } else {
-//     element.classList.add("wrong")
-//   }
-// }
-
-
-// function clearStatusClass (element) {
-//   element.classList.remove("correct")
-//   element.classList.remove("wrong")
-// }
 
 const questions = [
   {
@@ -249,22 +188,6 @@ function startTimer() {
   }, 1000);
 }
 
-function isWin() {
-  winLoseMessage.textContent = "YOU WON!!!🏆 ";
-  winCounter++
-  startButton.disabled = false;
-  setWins()
-  clearInterval(timer);
-  displayInput()
-}
-
-function loseGame() {
-  winLoseMessage.textContent = "GAME OVER";
-  loseCounter++
-  startButton.disabled = false;
-  setLosses()
-  clearInterval(timer)
-}
 
 function endGame () {
   if (timerCount <= 0) {
