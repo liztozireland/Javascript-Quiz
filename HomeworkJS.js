@@ -1,7 +1,8 @@
 const startButton = document.getElementById("start-btn")
 const nextButton = document.getElementById("next-btn")
 const questionContainerEl = document.getElementById("question-container")
-const questionElement = document.getElementById("question")
+var choicesEl = document.getElementById("choices");
+const questionElement = document.getElementById("questions")
 const answerButtonElement = document.getElementById("answer-buttons")
 var win = document.querySelector(".win");
 var lose = document.querySelector(".lose");
@@ -32,85 +33,128 @@ nextButton.addEventListener("click", () => {
 function startGame () {
   isWin = false;
   timerCount = 10;
-console.log("started") 
 startButton.classList.add("hide")
 shuffledQuestions = questions.sort(() => Math.random() - .5)
 currentQuestionIndex = 0 
 questionContainerEl.classList.remove("hide")
-setNextQuestion()
+showQuestion(shuffledQuestions[currentQuestionIndex])
 startTimer()
 }
 
-function setNextQuestion () {
-  resetState()
-  showQuestion(shuffledQuestions[currentQuestionIndex])
-}
+function showQuestion () {
+  var currentQuestion = questions[currentQuestionIndex];
+  document.getElementById("question").innerHTML = currentQuestion.title;
+  // currentQuestion = questions.title;
+  
+  // questions[currentQuestionIndex].question;
+  currentQuestion.choices.forEach(function(choice, i) {
+    var choicesEl = document.getElementById("answer-buttons");
+    choicesEl.querySelector("value", choice);
 
-function showQuestion (question) {
+    choicesEl.textContent = i + 1 + ". " + choice;
+    choicesEl.onclick = questionClick;
+
+    console.log("questionIII")
+
+  });
 
 
+  function questionClick() {
+    // check if user guessed wrong
+    if (this.value !== questions[currentQuestionIndex].answer) {
+      // penalize time
+      time -= 15;
+  
+      if (time < 0) {
+        time = 0;
+      }
+  
+      // display new time on page
+      timerEl.textContent = time;
+  
 
-
-
-
-
-  questionElement.innerText = question.question
-question.answers.forEach(answer => {
-  const button = document.createElement("btn")
-  button.innerText = answer.text
-  button.classList.add("btn")
-  if (answer.correct) {
-    button.dataset.correct = answer.correct
+  
+      feedbackEl.textContent = "Wrong!";
+    } else {
+  
+      feedbackEl.textContent = "Correct!";
+    }
+  
+    // flash right/wrong feedback on page for half a second
+    feedbackEl.setAttribute("class", "feedback");
+    setTimeout(function() {
+      feedbackEl.setAttribute("class", "feedback hide");
+    }, 1000);
+  
+    // move to next question
+    currentQuestionIndex++;
+  
+    // check if we've run out of questions
+    if (currentQuestionIndex === questions.length) {
+      quizEnd();
+    } else {
+      getQuestion();
+    }
   }
-  button.addEventListener("click", selectAnswer)
-  answerButtonElement.appendChild(button)
-})
+
+
+//   questionElement.innerText = question.question
+// question.answers.forEach(answer => {
+//   const button = document.createElement("btn")
+//   button.innerText = answer.text
+//   button.classList.add("btn")
+//   if (answer.correct) {
+//     button.dataset.correct = answer.correct
+//   }
+//   button.addEventListener("click", selectAnswer)
+//   answerButtonElement.appendChild(button)
+// })
 }
 
-function resetState () {
-  nextButton.classList.add("hide")
-  while (answerButtonElement.firstChild) {
-    answerButtonElement.removeChild(answerButtonElement.firstChild)
-  }
-}
+// function resetState () {
+//   nextButton.classList.add("hide")
+//   while (answerButtonElement.firstChild) {
+//     answerButtonElement.removeChild(answerButtonElement.firstChild)
+//   }
+// }
 
-function selectAnswer (e) {
-  const selectedButton = e.target
-  const correct = selectedButton.dataset.correct
-  const wrong = selectedButton.dataset.wrong
-  setStatusClass(document.body, correct, wrong)
-  Array.from(answerButtonElement.children).forEach(button => {
-    setStatusClass(button, button.dataset.correct)
-  })
-  if (shuffledQuestions.length > currentQuestionIndex + 1){
-    nextButton.classList.remove("hide")
-  } else {
-    isWin = true
-      startButton.innerText = "Restart"
-      startButton.classList.remove("hide")
-  }
-}
-
-
-function setStatusClass (element, correct, wrong){
-  clearStatusClass(element)
-  if (correct) {
-    element.classList.add("correct")
-  } else {
-    element.classList.add("wrong")
-  }
-}
+// function selectAnswer (e) {
+//   const selectedButton = e.target
+//   const correct = selectedButton.dataset.correct
+//   const wrong = selectedButton.dataset.wrong
+//   setStatusClass(document.body, correct, wrong)
+//   Array.from(answerButtonElement.children).forEach(button => {
+//     setStatusClass(button, button.dataset.correct)
+//   })
+//   if (shuffledQuestions.length > currentQuestionIndex + 1){
+//     nextButton.classList.remove("hide")
+//   } else {
+//     isWin = true
+//       startButton.innerText = "Restart"
+//       startButton.classList.remove("hide")
+//   }
+// }
 
 
-function clearStatusClass (element) {
-  element.classList.remove("correct")
-  element.classList.remove("wrong")
-}
+// function setStatusClass (element, correct, wrong){
+//   clearStatusClass(element)
+//   if (correct) {
+//     element.classList.add("correct")
+//   } else {
+//     element.classList.add("wrong")
+//   }
+// }
+
+
+// function clearStatusClass (element) {
+//   element.classList.remove("correct")
+//   element.classList.remove("wrong")
+// }
 
 const questions = [
   {
-    question: "Green River Killer",
-    answers: [
+    title: "Green River Killer",
+    choices: [
       "Gary Ridgeway", 
       "Jeff Dahmer",
       "Ootis Toole",
@@ -119,8 +163,8 @@ const questions = [
     answer: "Gary Ridgeway"
   }, 
   {
-    question: "Son of Sam",
-    answers: [
+    title: "Son of Sam",
+    choices: [
       "Robert Pickton", 
       "David Berkowitz",
       "PeeWee Gaskins",
@@ -129,8 +173,8 @@ const questions = [
     answer: "David Berkowitz"
   },
   {
-    question: "Kansas City Butcher",
-    answers: [
+    title: "Kansas City Butcher",
+    choices: [
       "Bob Bardella", 
       "Ed Gein",
       "Aileen Wurnoos",
@@ -139,8 +183,8 @@ const questions = [
     answer: "Bob Bardella"
   }, 
   {
-    question: "Milwaukee Cannibal",
-    answers: [
+    title: "Milwaukee Cannibal",
+    choices: [
       "Edmund Kemper", 
       "Jeff Dahmer",
       "Katherine Knight",
@@ -149,8 +193,8 @@ const questions = [
     answer: "Jeff Dahmer"
   },
   {
-    question: "Grim Sleeper",
-    answers: [
+    title: "Grim Sleeper",
+    choices: [
       "Samuel Little", 
       "Rodney Alcala",
       "H.H. Holmes",
@@ -159,8 +203,8 @@ const questions = [
     answer: "Samuel Little"
   }, 
   {
-    question: "Co-Ed Killer",
-    answers: [
+    title: "Co-Ed Killer",
+    choices: [
       "Andre Chikatilo", 
       "Edmund Kemper",
       "Ted Kaczynski", 
