@@ -47,8 +47,8 @@ function showQuestion () {
   answerButtonElement.innerHTML = "";
   currentQuestion.choices.forEach(function(choice, i) {
     var choicesEl = document.createElement("button");
-    choicesEl.setAttribute("class", "choice");
-    choicesEl.setAttribute("value", choicesEl);
+    choicesEl.setAttribute("class", "value");
+    choicesEl.setAttribute("value", choice);
 
     choicesEl.textContent = i + 1 + ". " + choice;
     choicesEl.onclick = questionClick; 
@@ -59,8 +59,7 @@ function showQuestion () {
 
   function questionClick() {
     // check if user guessed wrong
-    if (this.value !== currentQuestion.answer) {
-      console.log("wrong")
+    if (this.value !== questions[currentQuestionIndex].answer) { console.log("wrong") } else if (this.value === questions[currentQuestionIndex].answer) { console.log("right") };
       // penalize time
     //   timerCount -= 15;
   
@@ -77,7 +76,7 @@ function showQuestion () {
     // } else {
   
     //   winLoseMessage.textContent = "Correct!";
-    }
+    
   
     // flash right/wrong feedback on page for half a second
     // winLoseMessage.setAttribute("class", "feedback");
