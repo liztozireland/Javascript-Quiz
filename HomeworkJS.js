@@ -48,13 +48,13 @@ function showQuestion () {
   
   // questions[currentQuestionIndex].question;
   currentQuestion.choices.forEach(function(choice, i) {
-    var choicesEl = document.getElementById("answer-buttons");
-    choicesEl.querySelector("value", choice);
+    var choicesEl = document.createElement("button");;
+    document.getElementById("answer-buttons").innerHTML = currentQuestion.choices;
 
-    choicesEl.textContent = i + 1 + ". " + choice;
+    choicesEl.textContent = i + ". " + choice;
     choicesEl.onclick = questionClick;
 
-    console.log("questionIII")
+    console.log("questionIII")  
 
   });
 
