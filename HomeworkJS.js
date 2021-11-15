@@ -23,24 +23,6 @@ function init() {
   getlosses();
 }
 
-function isWin() {
-  winLoseMessage.textContent = "YOU WON!!!🏆 ";
-  winCounter++
-  startButton.disabled = false;
-  setWins()
-  clearInterval(timer);
-  displayInput()
-}
-
-// The loseGame function is called when timer reaches 0
-function loseGame() {
-  winLoseMessage.textContent = "GAME OVER";
-  loseCounter++
-  startButton.disabled = false;
-  setLosses()
-  clearInterval(timer)
-}
-
 startButton.addEventListener("click", startGame)
 nextButton.addEventListener("click", () => {
   currentQuestionIndex++
@@ -65,7 +47,14 @@ function setNextQuestion () {
 }
 
 function showQuestion (question) {
-questionElement.innerText = question.question
+
+
+
+
+
+
+
+  questionElement.innerText = question.question
 question.answers.forEach(answer => {
   const button = document.createElement("btn")
   button.innerText = answer.text
@@ -88,7 +77,8 @@ function resetState () {
 function selectAnswer (e) {
   const selectedButton = e.target
   const correct = selectedButton.dataset.correct
-  setStatusClass(document.body, correct)
+  const wrong = selectedButton.dataset.wrong
+  setStatusClass(document.body, correct, wrong)
   Array.from(answerButtonElement.children).forEach(button => {
     setStatusClass(button, button.dataset.correct)
   })
@@ -101,7 +91,8 @@ function selectAnswer (e) {
   }
 }
 
-function setStatusClass (element, correct){
+
+function setStatusClass (element, correct, wrong){
   clearStatusClass(element)
   if (correct) {
     element.classList.add("correct")
@@ -109,14 +100,6 @@ function setStatusClass (element, correct){
     element.classList.add("wrong")
   }
 }
-
-// function correctAnswer (correct, wrong) {
-//   if (correct) {
-//     element.classList.add("correct")
-//   } else {
-//     element.classList.add("wrong")
-//   }
-// }
 
 
 function clearStatusClass (element) {
@@ -128,56 +111,62 @@ const questions = [
   {
     question: "Green River Killer",
     answers: [
-      {text: "Gary Ridgeway", correct: true }, 
-      {text: "Jeff Dahmer", correct: false},
-      {text: "Ootis Toole", correct: false},
-      {text: "David Berkowitz", correct: false}
-    ]
+      "Gary Ridgeway", 
+      "Jeff Dahmer",
+      "Ootis Toole",
+      "David Berkowitz"
+    ],
+    answer: "Gary Ridgeway"
   }, 
   {
     question: "Son of Sam",
     answers: [
-      {text: "Robert Pickton", correct: false }, 
-      {text: "David Berkowitz", correct: true},
-      {text: "PeeWee Gaskins", correct: false },
-      {text: "Richard Chase", correct: false }
-    ]
+      "Robert Pickton", 
+      "David Berkowitz",
+      "PeeWee Gaskins",
+      "Richard Chase"
+    ],
+    answer: "David Berkowitz"
   },
   {
     question: "Kansas City Butcher",
     answers: [
-      {text: "Bob Bardella", correct: true }, 
-      {text: "Ed Gein", correct: false},
-      {text: "Aileen Wurnoos", correct: false},
-      {text: "Ted Bundy", correct: false}
-    ]
+      "Bob Bardella", 
+      "Ed Gein",
+      "Aileen Wurnoos",
+      "Ted Bundy"
+    ],
+    answer: "Bob Bardella"
   }, 
   {
     question: "Milwaukee Cannibal",
     answers: [
-      {text: "Edmund Kemper", correct: false }, 
-      {text: "Jeff Dahmer", correct: true},
-      {text: "Katherine Knight", correct: false },
-      {text: "John Wayne Gacy", correct: false }
-    ]
+      "Edmund Kemper", 
+      "Jeff Dahmer",
+      "Katherine Knight",
+      "John Wayne Gacy"
+    ],
+    answer: "Jeff Dahmer"
   },
   {
     question: "Grim Sleeper",
     answers: [
-      {text: "Samuel Little", correct: true }, 
-      {text: "Rodney Alcala", correct: false},
-      {text: "H.H. Holmes", correct: false},
-      {text: "Jack Unterweger", correct: false}
-    ]
+      "Samuel Little", 
+      "Rodney Alcala",
+      "H.H. Holmes",
+      "Jack Unterweger"
+    ],
+    answer: "Samuel Little"
   }, 
   {
     question: "Co-Ed Killer",
     answers: [
-      {text: "Andre Chikatilo", correct: false }, 
-      {text: "Edmund Kemper", correct: true},
-      {text: "Ted Kaczynski", correct: false }, 
-      {text: "Richard Ramizrez", correct: false }
-    ]
+      "Andre Chikatilo", 
+      "Edmund Kemper",
+      "Ted Kaczynski", 
+      "Richard Ramizrez"
+    ],
+    answer: "Edmund Kemper"
   }
 ]
 
@@ -214,6 +203,23 @@ function startTimer() {
       endGame();
     }
   }, 1000);
+}
+
+function isWin() {
+  winLoseMessage.textContent = "YOU WON!!!🏆 ";
+  winCounter++
+  startButton.disabled = false;
+  setWins()
+  clearInterval(timer);
+  displayInput()
+}
+
+function loseGame() {
+  winLoseMessage.textContent = "GAME OVER";
+  loseCounter++
+  startButton.disabled = false;
+  setLosses()
+  clearInterval(timer)
 }
 
 function endGame () {

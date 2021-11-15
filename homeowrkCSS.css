@@ -112,7 +112,7 @@ body {
   }
 
   .btn.wrong {
-background-color: magenta;
+background-color: red;
   }
 
   .start-btn, .next-btn {
