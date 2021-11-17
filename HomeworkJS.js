@@ -59,7 +59,14 @@ function showQuestion () {
 
   function questionClick() {
     // check if user guessed wrong
-    if (this.value !== questions[currentQuestionIndex].answer) { console.log("wrong") } else if (this.value === questions[currentQuestionIndex].answer) { console.log("right") };
+    if (this.value !== questions[currentQuestionIndex].answer) { console.log("wrong") 
+   showQuestion()
+
+  } 
+    
+    else if (this.value === questions[currentQuestionIndex].answer) { console.log("right") 
+  
+    nextButton.classList.remove("hide")};
       // penalize time
     //   timerCount -= 15;
   
