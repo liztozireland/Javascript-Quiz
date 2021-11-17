@@ -41,6 +41,11 @@ showQuestion(shuffledQuestions[currentQuestionIndex])
 startTimer()
 }
 
+function setNextQuestion () {
+  showQuestion(shuffledQuestions[currentQuestionIndex])
+  nextButton.classList.add("hide")
+}
+
 function showQuestion () {
   var currentQuestion = questions[currentQuestionIndex];
   document.getElementById("question").innerHTML = currentQuestion.title;
@@ -60,13 +65,12 @@ function showQuestion () {
   function questionClick() {
     // check if user guessed wrong
     if (this.value !== questions[currentQuestionIndex].answer) { console.log("wrong") 
-   showQuestion()
-
   } 
     
     else if (this.value === questions[currentQuestionIndex].answer) { console.log("right") 
-  
-    nextButton.classList.remove("hide")};
+    nextButton.classList.remove("hide")
+};
+// currentQuestionIndex++;
       // penalize time
     //   timerCount -= 15;
   
@@ -92,7 +96,7 @@ function showQuestion () {
     // }, 1000);
   
     // move to next question
-    currentQuestionIndex++;
+ 
   }
 }
 
@@ -205,6 +209,8 @@ function endGame () {
 // questionContainerEl.classList.add("hide")
 startButton.innerText = "Restart"
 startButton.classList.remove("hide")
+    
+  } else if (currentQuestionIndex > 0){
     
   }
 }
