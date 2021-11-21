@@ -65,9 +65,11 @@ function showQuestion () {
   function questionClick() {
     // check if user guessed wrong
     if (this.value !== questions[currentQuestionIndex].answer) { console.log("wrong") 
+    localStorage.setItem("wrong",("value" + 1));
   } 
     
     else if (this.value === questions[currentQuestionIndex].answer) { console.log("right") 
+    localStorage.setItem("right", + 1);
     nextButton.classList.remove("hide")
 };
 // currentQuestionIndex++;
@@ -98,6 +100,10 @@ function showQuestion () {
     // move to next question
  
   }
+}
+
+function saveToLocal () {
+
 }
 
 const questions = [
@@ -210,9 +216,7 @@ function endGame () {
 startButton.innerText = "Restart"
 startButton.classList.remove("hide")
     
-  } else if (currentQuestionIndex > 0){
-    
-  }
+  } 
 }
 
 function getHighScore () {
