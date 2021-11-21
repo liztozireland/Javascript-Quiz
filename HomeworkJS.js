@@ -65,13 +65,26 @@ function showQuestion () {
   function questionClick() {
     // check if user guessed wrong
     if (this.value !== questions[currentQuestionIndex].answer) { console.log("wrong") 
-    localStorage.setItem("wrong",("value" + 1));
+    loseCounter++
+    setLosses()
   } 
     
     else if (this.value === questions[currentQuestionIndex].answer) { console.log("right") 
-    localStorage.setItem("right", + 1);
+    winCounter++
     nextButton.classList.remove("hide")
+    setWins()
 };
+
+function setWins() {
+  win.textContent = winCounter;
+  localStorage.setItem("winCount", winCounter);
+}
+
+function setLosses() {
+  lose.textContent = loseCounter;
+  localStorage.setItem("loseCount", loseCounter);
+}
+
 // currentQuestionIndex++;
       // penalize time
     //   timerCount -= 15;
@@ -102,9 +115,16 @@ function showQuestion () {
   }
 }
 
-function saveToLocal () {
-
-}
+// function saveToLocal () {
+//   if (this.value !== questions[currentQuestionIndex].answer) {
+//   console.log("WrongWWWwrong") 
+//   wrong++;
+//   localStorage.setItem("wrong"  + 1);
+//   } else if (this.value === questions[currentQuestionIndex].answer) { console.log("right")
+//   wrong++; 
+//   localStorage.setItem("right", + 1);
+// }
+// }
 
 const questions = [
   {
