@@ -1,5 +1,7 @@
 const startButton = document.getElementById("start-btn");
 const nextButton = document.getElementById("next-btn");
+const resetButton = document.getElementById("reset-btn");
+const saveButton = document.getElementById("save-btn");
 const questionContainerEl = document.getElementById("question-container");
 var choicesEl = document.getElementById("choices");
 const questionElement = document.getElementById("questions");
@@ -27,12 +29,14 @@ startButton.addEventListener("click", startGame);
 nextButton.addEventListener("click", () => {
   currentQuestionIndex++;
   setNextQuestion();
+  resetButton.addEventListener("click", resetGame);
 });
 
 function startGame() {
   isWin = false;
   timerCount = 10;
   startButton.classList.add("hide");
+  resetButton.classList.add("hide");
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
   currentQuestionIndex = 0;
   questionContainerEl.classList.remove("hide");
@@ -182,6 +186,8 @@ function endGame() {
     startButton.innerText = "Restart";
     startButton.classList.remove("hide");
     nextButton.classList.add("hide");
+    resetButton.classList.remove("hide");
+    saveButton.classList.remove("hide");
   }
 }
 
