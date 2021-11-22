@@ -34,7 +34,7 @@ nextButton.addEventListener("click", () => {
 
 function startGame() {
   isWin = false;
-  timerCount = 10;
+  timerCount = 15;
   startButton.classList.add("hide");
   resetButton.classList.add("hide");
   shuffledQuestions = questions.sort(() => Math.random() - 0.5);
@@ -47,7 +47,8 @@ function startGame() {
 function setNextQuestion() {
   showQuestion(shuffledQuestions[currentQuestionIndex]);
   nextButton.classList.add("hide");
-}
+  
+  }
 
 function showQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
