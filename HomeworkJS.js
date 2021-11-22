@@ -11,7 +11,7 @@ var lose = document.querySelector(".lose");
 var timerElement = document.querySelector(".timer-count");
 var winLoseMessage = document.getElementById("winLoseMessage");
 var wrongAnswer = document.getElementById("wrongAnswer");
-var finalScore = document.querySelector(".final-score");
+var finalScore = document.getElementById("final-score");
 var winCounter = 0;
 var loseCounter = 0;
 var isWin = false;
@@ -181,14 +181,19 @@ function endGame() {
     timerCount = 0;
     timerElement.textContent = timerCount;
     clearInterval(timer);
-    //     questionElement.setAttribute("class", "hide");
-    // questionContainerEl.classList.add("hide")
     startButton.innerText = "Restart";
     startButton.classList.remove("hide");
     nextButton.classList.add("hide");
     resetButton.classList.remove("hide");
     saveButton.classList.remove("hide");
+    saveButton.addEventListener("click", saveHighscore);
   }
+}
+
+function saveHighscore () {
+console.log("here's your final score")
+var storedWins = localStorage.getItem("winCount");
+document.getElementById("final-score").innerHTML = storedWins;
 }
 
 function resetGame() {
@@ -213,42 +218,3 @@ function getWins() {
   //Render win count to page
   win.textContent = winCounter;
 }
-
-
-
-// function getHighScore() {
-//   var score = localStorage.getItem("highScore") || "none";
-//   highScore.textContent = score;
-// }
-
-// function displayInput() {
-//   //display button and input
-//   //buttons should have "on click" that saves high score function
-// }
-
-// function saveHighScore() {
-//   //local storage: set item
-//   //grab input initals and time left in game
-//   getHighScore();
-// }
-
-// getHighScore();
-
-
-
-// function saveHighScore() {
-//   //take time and value property from input and make a string
-//   //localStorage.setItem("score",varSomething)
-//   //append varSomething to place on the page w/ high scores (in HTML)
-// }
-
-// function showInput() {
-//   //const or var input & create element var something = create element.tag name (do for input and button)
-//   //button: onclick of "save high score" append both input and button to DOM
-// }
-
-// function showHighScore() {
-//   //var Score = localstorage.getitem("score")
-//   //append to high score item in HTML
-// }
-// showHighScore();
